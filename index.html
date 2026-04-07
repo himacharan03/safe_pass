@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafePass V2V System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="header">
+        <h1>SafePass V2V System</h1>
+    </header>
+
+    <div class="container">
+        <!-- Input Panel -->
+        <aside class="left-panel">
+            <h2>Scenario Inputs</h2>
+            <form id="scenarioForm">
+                <label>Vehicle A Speed (km/h):
+                    <input type="number" id="speedA" value="60">
+                </label>
+                <label>Vehicle B Speed (km/h):
+                    <input type="number" id="speedB" value="40">
+                </label>
+                <label>Vehicle C Speed (km/h):
+                    <input type="number" id="speedC" value="70">
+                </label>
+                <label>Distance A-B (m):
+                    <input type="number" id="distAB" value="20">
+                </label>
+                <label>Distance B-C (m):
+                    <input type="number" id="distBC" value="30">
+                </label>
+                <label>Opposite Vehicle:
+                    <select id="oppPresent">
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </label>
+                <label>Road Type:
+                    <select id="roadType">
+                        <option value="Highway">Highway</option>
+                        <option value="City">City</option>
+                        <option value="Curve">Curve</option>
+                    </select>
+                </label>
+                <label>Visibility:
+                    <select id="visibility">
+                        <option value="Good">Good</option>
+                        <option value="Medium">Medium</option>
+                        <option value="Poor">Poor</option>
+                    </select>
+                </label>
+                <button type="submit" class="simulate-btn">Simulate</button>
+            </form>
+        </aside>
+
+        <!-- Main Content (Animation & Output) -->
+        <main class="main-panel">
+            <div class="decision-box">
+                <h2>Decision: <span id="decisionText" class="status-unknown">-</span></h2>
+                <div class="risk-info">
+                    <p>Risk Level: <strong id="riskText">-</strong></p>
+                    <p>Message: <span id="messageText">-</span></p>
+                </div>
+            </div>
+
+            <!-- Animation Area -->
+            <div class="animation-container">
+                <div class="road">
+                    <div class="lane-divider line-1"></div>
+                    <div class="lane-divider line-2"></div>
+                    <div class="lane-divider line-3"></div>
+                    <div class="lane-divider line-4"></div>
+                </div>
+                <!-- Cars -->
+                <div class="car car-a" id="carA">A</div>
+                <div class="car car-b" id="carB">B</div>
+                <div class="car car-c" id="carC" style="display: none;">C</div>
+                
+                <div id="warningOverlay" class="warning-flash"></div>
+            </div>
+
+            <!-- Graph Area -->
+            <div class="graph-box">
+                <h3>Collision Prediction Graph</h3>
+                <img id="collisionGraph" src="" alt="Collision Graph will appear here">
+            </div>
+            
+            <div class="pos-info">
+                <h4>V2V Simulated Positions (After 5 sec)</h4>
+                <p id="simText"></p>
+            </div>
+        </main>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

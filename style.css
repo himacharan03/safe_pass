@@ -1,0 +1,218 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #121212;
+    color: #e0e0e0;
+}
+
+.header {
+    background-color: #1f1f1f;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 2px solid #333;
+    color: #4CAF50;
+}
+
+.container {
+    display: flex;
+    padding: 20px;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.left-panel {
+    flex: 1;
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+}
+
+.left-panel h2 {
+    margin-bottom: 20px;
+    color: #fff;
+    border-bottom: 1px solid #444;
+    padding-bottom: 10px;
+}
+
+.left-panel label {
+    display: block;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+.left-panel input, .left-panel select {
+    width: 100%;
+    margin-top: 5px;
+    padding: 10px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.simulate-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.simulate-btn:hover {
+    background-color: #0056b3;
+}
+
+.main-panel {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.decision-box {
+    background: #222;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    border-left: 5px solid #4CAF50;
+}
+
+.decision-box h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.status-safe { color: #4CAF50; }
+.status-unsafe { color: #f44336; }
+.status-warning { color: #ff9800; }
+.status-unknown { color: #999; }
+
+.animation-container {
+    position: relative;
+    height: 150px;
+    background: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.road {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.lane-divider {
+    width: 20%;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.car {
+    position: absolute;
+    width: 60px;
+    height: 30px;
+    border-radius: 6px;
+    color: white;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.1s linear, top 0.3s ease;
+    z-index: 10;
+    box-shadow: inset 0 0 0 2px rgba(0,0,0,0.2), 3px 3px 5px rgba(0,0,0,0.5);
+}
+
+/* Car roof and windshields */
+.car::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 24px;
+    background: rgba(0, 0, 0, 0.4); 
+    border-radius: 4px;
+}
+
+/* Headlights / Taillights common */
+.car::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+.car-a { background-color: #2196F3; top: 95px; left: 10%; } /* Blue */
+.car-a::after {
+    box-shadow: inset -3px 0 0 rgba(255, 235, 59, 0.8), inset 3px 0 0 rgba(244, 67, 54, 0.8);
+}
+
+.car-b { background-color: #4CAF50; top: 95px; left: 50%; } /* Green */
+.car-b::after {
+    box-shadow: inset -3px 0 0 rgba(255, 235, 59, 0.8), inset 3px 0 0 rgba(244, 67, 54, 0.8);
+}
+
+.car-c { background-color: #f44336; top: 25px; left: 90%; } /* Red */
+.car-c::after {
+    /* Facing opposite direction */
+    box-shadow: inset 3px 0 0 rgba(255, 235, 59, 0.8), inset -3px 0 0 rgba(244, 67, 54, 0.8);
+}
+
+.warning-flash {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(244, 67, 54, 0.3);
+    z-index: 20;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.flash-active {
+    animation: pulseRed 0.5s infinite;
+}
+
+@keyframes pulseRed {
+    0% { opacity: 0; }
+    50% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.graph-box {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.graph-box img {
+    max-width: 100%;
+    border-radius: 4px;
+    background: white; /* Contrast for matplotlib */
+}
+
+.pos-info {
+    background: #2a2a2a;
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 0.9em;
+    font-family: monospace;
+}
